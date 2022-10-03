@@ -4,6 +4,7 @@ import Navbar from './components/estaticos/navbar/Navbar'
 import Footer from './components/estaticos/footer/Footer'
 import Login from './paginas/login/Login';
 import './App.css';
+// importando a Home
 import Home from './paginas/home/Home';
 
 function App() {
