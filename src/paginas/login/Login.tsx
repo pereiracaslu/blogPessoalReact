@@ -3,6 +3,7 @@ import { Grid, Box, Typography, TextField, Button } from '@material-ui/core';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import useLocalStorage from 'react-use-localstorage';
+import { api } from '../../services/Service';
 import UserLogin from '../../models/UserLogin';
 import { login } from '../../services/Service';
 
@@ -27,14 +28,21 @@ function Login() {
         })
     }
 
+    useEffect(()=>{
+        if (token != ''){
+            navigate('/home')
+        }
+
+    },[token])
+
     async function onSubmit(event:ChangeEvent<HTMLFormElement>) {
         event.preventDefault();
         try {
             await login('usuarios/logar', userLogin, setToken);
+            alert('Usuário logado com sucesso!')
           } catch (error) {
-            alert('Dados de usuário inválidos, Tente novamente.')
+            alert('Dados do usuário inválidos. Tente novamente.')
           }
-          console.log(userLogin)
         }
 
     return (
