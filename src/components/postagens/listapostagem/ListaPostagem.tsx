@@ -7,7 +7,7 @@ import Postagem from '../../../models/Postagem';
 import { busca } from '../../../services/Service';
 
 function ListaPostagem() {
-  const [postagem, setPostagem] = useState<Postagem[]>([])
+  const [postagens, setPostagens] = useState<Postagem[]>([])
   const [token, setToken] = useLocalStorage('token')
   let navigate = useNavigate();
 
@@ -19,7 +19,7 @@ function ListaPostagem() {
   }, [token])
 
   async function getPostagem() {
-    await busca("/postagem", setPostagem, {
+    await busca("/postagem", setPostagens, {
       headers: {
         'Authorization': token
       }
@@ -28,11 +28,11 @@ function ListaPostagem() {
 
   useEffect (()=>{
     getPostagem()
-  }, [postagem.length])
+  }, [postagens.length])
   return (
   <>
   {
-    postagem.map(postagem=>(  
+    postagens.map(postagem=>(  
       <Box m={2} >
         <Card variant="outlined">
           <CardContent>
