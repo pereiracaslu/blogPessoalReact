@@ -12,14 +12,15 @@ function ListaPostagem() {
   let navigate = useNavigate();
 
   useEffect(()=> {
-    if (token == ''){
+    if (token === ''){
       alert("Você precisa estar logado")
       navigate("/login")
     }
   }, [token])
 
   async function getPostagem() {
-    await busca("/postagem", setPostagens, {
+    console.log('alex gay')
+    await busca("/postagens", setPostagens, {
       headers: {
         'Authorization': token
       }
@@ -28,7 +29,10 @@ function ListaPostagem() {
 
   useEffect (()=>{
     getPostagem()
-  }, [postagens.length])
+    console.log (postagens.length);
+  }, [])
+
+
   return (
   <>
   {
@@ -40,7 +44,7 @@ function ListaPostagem() {
               Postagens
             </Typography>
             <Typography variant="h5" component="h2">
-            {postagem.tutulo}
+            {postagem.titulo}
             </Typography>
             <Typography variant="body2" component="p">
               {postagem.texto}
@@ -52,14 +56,14 @@ function ListaPostagem() {
           <CardActions>
             <Box display="flex" justifyContent="center" mb={1.5}>
 
-              <Link to={`/editarPost/${postagem.id}`} className="text-decorator-none" >
+              <Link to={`/formulariopostagem/${postagem.id}`} className="text-decorator-none" >
                 <Box mx={1}>
                   <Button variant="contained" className="marginLeft" size='small' color="primary" >
                     atualizar
                   </Button>
                 </Box>
               </Link>
-              <Link to={`/apagarPost/${postagem.id}`} className="text-decorator-none">
+              <Link to={`/deletarpostagem/${postagem.id}`} className="text-decorator-none">
                 <Box mx={1}>
                   <Button variant="contained" size='small' color="secondary">
                     deletar

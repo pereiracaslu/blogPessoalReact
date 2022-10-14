@@ -2,7 +2,7 @@ import Tema from "./Tema";
 
 interface Postagem{
     id: number;
-    tutulo: string;
+    titulo: string;
     texto: string;
     tema?: Tema | null
 }

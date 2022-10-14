@@ -9,6 +9,46 @@ import Tema from '../../../models/Tema';
 
 function DeletarTema() {
   
+  let navigate = useNavigate();
+  const { id } = useParams<{id: string}>();
+  const [token, setToken] = useLocalStorage('token');
+  const [tema, setTema] = useState<Tema>()
+
+  useEffect(() => {
+      if (token == "") {
+          alert("Você precisa estar logado")
+          navigate("/login")
+  
+      }
+  }, [token])
+
+  useEffect(() =>{
+      if(id !== undefined){
+          findById(id)
+      }
+  }, [id])
+
+  async function findById(id: string) {
+      buscaId(`/tema/${id}`, setTema, {
+          headers: {
+            'Authorization': token
+          }
+        })
+      }
+
+      function sim() {
+          navigate('/temas')
+          deleteId(`/tema/${id}`, {
+            headers: {
+              'Authorization': token
+            }
+          });
+          alert('Tema deletado com sucesso');
+        }
+      
+        function nao() {
+          navigate('/temas')
+        }
           
   return (
     <>
@@ -44,3 +84,4 @@ function DeletarTema() {
   );
 }
 export default DeletarTema;
+

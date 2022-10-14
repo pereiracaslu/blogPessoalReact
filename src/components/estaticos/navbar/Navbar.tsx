@@ -32,7 +32,7 @@ function Navbar() {
                             </Typography>
                         </Box>
                         </Link>
-                        <Link to="/postagens" className="text-decorator-none">
+                        <Link to="/posts" className="text-decorator-none">
                         <Box mx={1} className = 'cursor'>
                             <Typography variant="h6" color="inherit">
                                 postagens

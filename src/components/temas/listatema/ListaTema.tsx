@@ -12,14 +12,15 @@ function ListaTema() {
   let navigate = useNavigate();
 
   useEffect(()=> {
-    if (token == ''){
+    if (token === ''){
       alert("Você precisa estar logado")
       navigate("/login")
     }
   }, [token])
 
   async function getTema() {
-    await busca("/tema", setTemas, {
+   console.log('sf')
+   await busca("/temas", setTemas, {
       headers: {
         'Authorization': token
       }
@@ -54,7 +55,7 @@ function ListaTema() {
                   </Button>
                 </Box>
               </Link>
-              <Link to={`/apagarTema/${tema.id}`} className="text-decorator-none">
+              <Link to={`/deletarTema/${tema.id}`} className="text-decorator-none">
                 <Box mx={1}>
                   <Button variant="contained" size='small' color="secondary">
                     deletar
