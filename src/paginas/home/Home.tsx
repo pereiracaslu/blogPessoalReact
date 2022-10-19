@@ -2,12 +2,16 @@ import React, { useEffect } from 'react';
 import {Typography, Box, Grid, Button} from '@material-ui/core';
 import './Home.css';
 import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
-import { useNavigate } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
+import { TokenState } from '../../store/tokens/tokensReducer';
 
 function Home() {
     let navigate = useNavigate();
-    const [token, setToken] = useLocalStorage('token');
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+      );
     
     useEffect(() => {
       if (token == "") {
@@ -26,9 +30,12 @@ function Home() {
                     </Box>
                     <Box display="flex" justifyContent="center">
                         <Box marginRight={1}>
+                            <ModalPostagem/>
                         </Box>
-                        <Button variant="outlined" className="botao">Ver Postagens</Button>
-                    </Box>
+                        <Link to='/posts'className="text-decorator-none">
+                        <Button variant="outlined" className='botao'>Ver Postagens</Button>
+                        </Link>
+                        </Box>
                 </Grid>
                 <Grid item xs={6} >
                     <img src="https://i.imgur.com/H88yIo2.png" alt="" width="500px" height="500px" />

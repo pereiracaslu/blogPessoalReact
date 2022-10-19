@@ -12,12 +12,22 @@ import CadastroTema from './components/temas/cadastroTema/CadastroTema';
 import CadastroPostagem from './components/postagens/cadastroPostagem/CadastroPostagem';
 import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPostagem';
 import DeletarTema from './components/temas/deletarTema/DeletarTema';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 function App() {
   return (
+    
+    <Provider store = {store}>
+    
     <Router>
       <Navbar />
+      
+      
+      
       <Routes>
+
+        
 
         <Route path="/" element={<Login  />} />
 
@@ -46,7 +56,7 @@ function App() {
       </Routes>
       <Footer />
     </Router>
-
+    </Provider>
   );
 }
 
